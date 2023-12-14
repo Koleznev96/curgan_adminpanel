@@ -1,0 +1,25 @@
+@import '@infomat/uikit/src/themeUtils';
+
+.container {
+	width: themeSpacing(32.5);
+	max-width: themeSpacing(32.5);
+	min-width: themeSpacing(32.5);
+	display: flex;
+	flex-direction: column;
+	justify-items: stretch;
+	gap: themeSpacing(1.25);
+}
+
+.subContainerItem {
+	display: flex;
+	flex-direction: column;
+	justify-items: stretch;
+	margin-top: -4px;
+}
+
+.subContainer {
+	display: flex;
+	flex-direction: column;
+	justify-items: stretch;
+	gap: themeSpacing(0.825);
+}
