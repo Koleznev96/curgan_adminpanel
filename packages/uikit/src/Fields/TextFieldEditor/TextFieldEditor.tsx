@@ -1,9 +1,6 @@
 import React from 'react';
-import {TextField as MuiTextField, TextFieldProps, Typography, Grid} from '@mui/material';
-import MDEditor from '@uiw/react-md-editor';
+import {Typography, Grid} from '@mui/material';
 import ReactQuill from 'react-quill';
-
-import {Icon, IconSize, IconType} from '@infomat/uikit/src/Icon';
 
 import style from './TextFieldEditor.module.scss';
 import PropertyHandler from '@infomat/core/src/Types/PropertyHandler';
@@ -47,7 +44,6 @@ const TextFieldEditor = ({label, placeholder, value, height = 200, setValue, isI
 		<Grid container direction="column">
 			{label && <Typography className={style.label}>{label}</Typography>}
 			<div data-color-mode="light" style={{marginBottom: 45}}>
-				{/* <MDEditor placeholder={placeholder} height={height} value={value} onChange={(e) => setValue(e || '')} /> */}
 				<ReactQuill
 					placeholder={placeholder}
 					theme="snow"

@@ -65,9 +65,5 @@
 		"@react-native/virtualized-lists@^0.72.6": "patch:@react-native/virtualized-lists@npm%3A0.72.6#./.yarn/patches/@react-native-virtualized-lists-npm-0.72.6-677ed9eda7.patch",
 		"@miblanchard/react-native-slider@^2.3.1": "patch:@miblanchard/react-native-slider@npm%3A2.3.1#./.yarn/patches/@miblanchard-react-native-slider-npm-2.3.1-0bcdca5b45.patch",
 		"native-base@^3.4.28": "patch:native-base@npm%3A3.4.28#./.yarn/patches/native-base-npm-3.4.28-a8ecceae4d.patch"
-	},
-	"dependencies": {
-		"@uiw/react-md-editor": "^4.0.1",
-		"react-quill": "^2.0.0"
 	}
 }
