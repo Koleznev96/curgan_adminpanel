@@ -47,7 +47,7 @@ const TextFieldEditor = ({label, placeholder, value, height = 200, setValue, isI
 				<ReactQuill
 					placeholder={placeholder}
 					theme="snow"
-					value={value}
+					value={value?.length ? value : '<p><br></p>'}
 					onChange={setValue}
 					modules={modules}
 					formats={formats}
