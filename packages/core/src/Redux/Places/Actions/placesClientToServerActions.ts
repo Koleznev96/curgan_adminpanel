@@ -23,8 +23,6 @@ class PlacesClientToServerActions extends ClientOnlyActions<EnumStore.PLACES> {
 			size?: number;
 			search?: string;
 			status?: string | null;
-			recommendedOnly?: boolean | null;
-			subcategoryId?: number | null;
 		}>(),
 	);
 
@@ -37,11 +35,6 @@ class PlacesClientToServerActions extends ClientOnlyActions<EnumStore.PLACES> {
 	createCategory = this.createAction(EnumClientToServerActions.CREAT_CATEGORY, this.getPrepareAction<TPlacesCreate>());
 
 	deleteCategory = this.createAction(EnumClientToServerActions.DELETE_CATEGORY, this.getPrepareAction<{id: number}>());
-
-	deleteRecommend = this.createAction(
-		EnumClientToServerActions.DELETE_RECOMMEND,
-		this.getPrepareAction<{id: number}>(),
-	);
 }
 
 export const placesClientToServerActions = new PlacesClientToServerActions();

@@ -15,9 +15,9 @@ export type TEventsCreate = {
 	endDate?: string;
 	startTime?: string;
 	endTime?: string;
-	phone?: string;
-	email?: string;
-	website?: string;
+	// phone?: string;
+	// email?: string;
+	// website?: string;
 	description?: string;
 	descriptionEn?: string;
 	cover?: TFileCrop;
@@ -25,7 +25,6 @@ export type TEventsCreate = {
 	frames?: TFrameCrop[];
 	coverFrame?: TFrameCrop;
 	photoIdsForRemoving?: number[];
-	linkForQrCode?: string;
 	address?: {
 		address?: string;
 		addressEn?: string;
@@ -46,6 +45,13 @@ export type TEventsVM = {
 	endDate?: string;
 	startTime: string;
 	endTime?: string;
+	address?: {
+		address?: string;
+		addressEn?: string;
+		latitude?: number;
+		longitude?: number;
+	};
+	photos?: TFileCrop[];
 };
 
 export type TEvents = PartialBy<TEventsVM, 'id'>;

@@ -18,7 +18,7 @@ const updateItemSaga = function* ({payload}: ReturnType<typeof placesClientToSer
 
 		yield put(
 			notificationsClientOnlyActions.enqueuePersistent({
-				notificationTitle: 'Туристический объект успешно обновлен',
+				notificationTitle: 'Достопримечательность успешно обновлена',
 				duration: 5000,
 				severity: EnumNotificationSeverity.SUCCESS,
 			}),

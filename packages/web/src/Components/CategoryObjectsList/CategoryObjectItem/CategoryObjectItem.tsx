@@ -12,7 +12,7 @@ import {Routes} from 'src/Routes/Routes';
 import style from './CategoryObjectItem.module.scss';
 
 const CategoryObjectItem = ({id, onDelete, categoryObjectVM}: TCategoryObjectItemProps) => {
-	const CategoryObjectEditLink = useRouterLinkForMui(Routes.categoryObject(id));
+	const ObjectEditLink = useRouterLinkForMui(Routes.categoryServices(id));
 
 	const deleteCategory = useCallback(() => {
 		onDelete({id});
@@ -20,12 +20,11 @@ const CategoryObjectItem = ({id, onDelete, categoryObjectVM}: TCategoryObjectIte
 
 	return (
 		<div className={style.container}>
-			<div className={style.box} style={{backgroundColor: categoryObjectVM.backgroundColor}}>
-				{/* <img src={categoryObjectVM.background.url} className={style.layout} /> */}
-				<img src={categoryObjectVM.icon.url} className={style.icon} />
+			<div className={style.box}>
+				<img src={categoryObjectVM.cover.url3x2} className={style.cover} />
 			</div>
 			<Typography className={style.label}>{categoryObjectVM.title}</Typography>
-			<ActionMenuItem editLink={CategoryObjectEditLink} onDelete={deleteCategory} />
+			<ActionMenuItem editLink={ObjectEditLink} onDelete={deleteCategory} />
 		</div>
 	);
 };

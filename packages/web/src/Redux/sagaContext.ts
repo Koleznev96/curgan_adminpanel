@@ -63,6 +63,10 @@ export const createSagaContext = (router: ReturnType<typeof createBrowserRouter>
 				navigate(Routes.attraction(id), options);
 			},
 
+			goCategorysServices(options) {
+				navigate(Routes.categoriesServices, options);
+			},
+
 			goServices(options) {
 				navigate(Routes.services, options);
 			},

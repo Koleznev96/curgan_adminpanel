@@ -22,7 +22,7 @@ const createItemSaga = function* ({payload}: ReturnType<typeof eventsClientToSer
 		yield* take(eventsClientOnlyActions.setData.type);
 		yield put(
 			notificationsClientOnlyActions.enqueuePersistent({
-				notificationTitle: 'Мероприятие успешно создано',
+				notificationTitle: 'Событие успешно создано',
 				duration: 5000,
 				severity: EnumNotificationSeverity.SUCCESS,
 			}),

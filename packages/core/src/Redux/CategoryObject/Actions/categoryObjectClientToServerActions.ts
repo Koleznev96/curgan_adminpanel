@@ -16,7 +16,7 @@ class CategoryObjectClientToServerActions extends ClientOnlyActions<EnumStore.CA
 
 	getList = this.createAction(
 		EnumClientToServerActions.GET_LIST,
-		this.getPrepareAction<{search?: string; size?: number; page?: number}>(),
+		this.getPrepareAction<{search?: string; size?: number; page?: number; status?: string | null}>(),
 	);
 
 	getAllList = this.createAction(EnumClientToServerActions.GET_ALL_LIST);

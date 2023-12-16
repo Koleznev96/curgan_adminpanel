@@ -11,9 +11,9 @@ import PageContainerDesktop from 'src/Routes/PageContainer/PageContainerDesktop'
 const ProtectedRoute = ({Comp}: {Comp?: FC}) => {
 	const isLoggedIn = useStoreSelector(selectIsLoggedIn);
 
-	// if (!isLoggedIn) {
-	// 	return <Navigate to={Routes.home} state={{location: undefined}} replace />;
-	// }
+	if (!isLoggedIn) {
+		return <Navigate to={Routes.home} state={{location: undefined}} replace />;
+	}
 
 	return (
 		<PageContainerDesktop>

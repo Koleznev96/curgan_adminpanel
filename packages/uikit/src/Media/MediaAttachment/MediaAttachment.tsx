@@ -55,7 +55,9 @@ const MediaAttachment = ({
 			supportedMimeTypes['video/*'] = [];
 		}
 		if (isAudioAllowed) {
-			supportedMimeTypes['audio/*'] = [];
+			// supportedMimeTypes['audio/*'] = [];
+			supportedMimeTypes['image/mp3'] = ['.mp3'];
+			supportedMimeTypes['image/wav'] = ['.wav'];
 		}
 
 		return supportedMimeTypes;

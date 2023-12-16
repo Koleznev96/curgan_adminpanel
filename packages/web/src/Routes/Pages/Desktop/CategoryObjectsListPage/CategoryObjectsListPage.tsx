@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CategoryObjectsListContainer from 'src/Components/CategoryObjectsList/CategoryObjectsListContainer';
+import CategoryObjectsListContainer from 'src/Components/CategoryObjectsLists/CategoryObjectsListContainer';
 
 const CategoryObjectsListPage = () => <CategoryObjectsListContainer />;
 

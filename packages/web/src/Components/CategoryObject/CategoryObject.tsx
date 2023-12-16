@@ -9,39 +9,49 @@ import TextField from '@infomat/uikit/src/Fields/TextField/TextField';
 import IconFiledWithPreview from '@infomat/uikit/src/Fields/IconFiledWithPreview/IconFiledWithPreview';
 import {TCategoryObjectCreate} from '@infomat/core/src/Redux/CategoryObject/entityAdapter';
 import ColorPicker from '@infomat/uikit/src/Fields/ColorPicker/ColorPicker';
+import {TFileCrop, TFrameCrop} from '@infomat/core/src/Types/media';
+import {checkUrlsNull} from 'src/Utils/checkFile';
+import {Crop} from 'react-image-crop';
+import FileFiledWithPreview from '@infomat/uikit/src/Fields/FileFiledWithPreview/FileFiledWithPreview';
 
 const CategoryObject = ({onSubmit, onDelete, categoryObjectVM, id}: TCategoryObjectProps) => {
 	const [title, setTitle] = useState(categoryObjectVM?.title || '');
 	const [titleEn, setTitleEn] = useState(categoryObjectVM?.titleEn || '');
-	const [description, setDescription] = useState(categoryObjectVM?.description || '');
-	const [descriptionEn, setDescriptionEn] = useState(categoryObjectVM?.descriptionEn || '');
-	const [backgroundColor, onBackgroundColor] = useState(categoryObjectVM?.backgroundColor || undefined);
-	const [color, onColor] = useState(categoryObjectVM?.color || undefined);
+	const [cover, setCover] = useState<TFileCrop>(categoryObjectVM?.cover || {url3x2: null});
 	const [icon, onIcon] = useState(categoryObjectVM?.icon || {url: null});
+	const [coverFrame, setCoverFrame] = useState<TFrameCrop | undefined>(categoryObjectVM?.coverFrame || undefined);
 
-	const isDisabledSave =
-		!title.length ||
-		!titleEn.length ||
-		icon.url === null ||
-		backgroundColor === undefined ||
-		!backgroundColor.length ||
-		color === undefined ||
-		!color.length;
+	const isDisabledSave = !title.length || icon.url === null || checkUrlsNull([cover]);
 
 	const onSave = useCallback(() => {
-		onSubmit({id, title, titleEn, backgroundColor, icon, description, descriptionEn, color});
-	}, [id, title, titleEn, backgroundColor, icon, onSubmit, description, descriptionEn, color]);
+		onSubmit({id, title, titleEn, cover, icon, coverFrame});
+	}, [onSubmit, id, title, titleEn, cover, icon, coverFrame]);
+
+	const onAttachBackground = useCallback(
+		(index: number, file: File | null, crop?: TFrameCrop) => {
+			setCover({url3x2: file});
+			if (file !== null && crop) {
+				setCoverFrame({partName: 'cover', ...crop});
+			} else {
+				setCoverFrame(undefined);
+			}
+		},
+		[setCover],
+	);
 
 	return (
 		<Grid container spacing={3}>
 			<Grid item container xs={12} md={12} gap={3}>
-				<IconFiledWithPreview onAttach={onIcon} file={icon} label="Загрузить иконку 30х30*" />
+				<FileFiledWithPreview
+					totalFiles={1}
+					isImageAllowed
+					onAttachAndCrop={onAttachBackground}
+					label="Обложка категории*"
+					files={[cover]}
+				/>
 			</Grid>
-			<Grid item xs={12} md={6}>
-				<ColorPicker label="Цвет подложки (HEX, с решёткой)*" value={backgroundColor} setValue={onBackgroundColor} />
-			</Grid>
-			<Grid item xs={12} md={6}>
-				<ColorPicker label="Основной цвет (HEX, с решёткой)*" value={color} setValue={onColor} />
+			<Grid item container xs={12} md={12} gap={3}>
+				<IconFiledWithPreview onAttach={onIcon} file={icon} label="Загрузить иконку 24х24*" />
 			</Grid>
 			<Grid item xs={12} md={6}>
 				<TextField
@@ -61,30 +71,6 @@ const CategoryObject = ({onSubmit, onDelete, categoryObjectVM, id}: TCategoryObj
 					onChange={(e) => setTitleEn(e.target.value)}
 					value={titleEn}
 					placeholder="Название на английском языке"
-				/>
-			</Grid>
-			<Grid item xs={12} md={6}>
-				<TextField
-					label={'Описание на русском языке'}
-					variant="outlined"
-					multiline
-					tabIndex={1}
-					onChange={(e) => setDescription(e.target.value)}
-					value={description}
-					rows={8}
-					placeholder="Описание"
-				/>
-			</Grid>
-			<Grid item xs={12} md={6}>
-				<TextField
-					label={'Описание на английском языке'}
-					variant="outlined"
-					multiline
-					tabIndex={1}
-					onChange={(e) => setDescriptionEn(e.target.value)}
-					value={descriptionEn}
-					rows={8}
-					placeholder="Описание"
 				/>
 			</Grid>
 			<Grid item container gap={1.5}>

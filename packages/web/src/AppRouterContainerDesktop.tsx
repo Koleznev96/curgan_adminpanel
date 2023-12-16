@@ -12,7 +12,7 @@ const AppRouterContainerDesktop = () => {
 
 	return (
 		<>
-			{!isLoggedIn && <Information />}
+			{isLoggedIn && <Information />}
 			<div className="content-container">
 				<AppRouter router={RouterDesktop} />
 			</div>

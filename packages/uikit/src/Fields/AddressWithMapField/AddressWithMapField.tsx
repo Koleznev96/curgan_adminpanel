@@ -291,7 +291,7 @@ const AddressWithMapField = ({
 							instanceRef={mapRef}
 							onClick={onMapClick}
 							className={style.map}
-							defaultState={{center: [54.47, 32.04], zoom: 10}}
+							defaultState={{center: [66.24, 129.1], zoom: 10}}
 						></Map>
 					</div>
 				</Grid>

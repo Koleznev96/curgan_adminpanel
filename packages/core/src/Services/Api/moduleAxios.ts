@@ -14,7 +14,7 @@ const currentUrl = window.location.href;
 const parsedUrl = new URL(currentUrl);
 const baseUrl = parsedUrl.origin;
 
-const isDevUrl = baseUrl === 'http://localhost:3000' ? 'http://89b1d22dddb7.vps.myjino.ru/api' : `${baseUrl}/api`;
+const isDevUrl = baseUrl === 'http://localhost:3000' ? 'http://b8316e2e003.vps.myjino.ru/api' : `${baseUrl}/api`;
 
 const config = {
 	baseURL: isDevUrl,
@@ -29,6 +29,14 @@ const config = {
 const api = axios.create(config);
 
 api.defaults.withCredentials = true;
+
+api.interceptors.request.use((config) => {
+	// Добавь заголовок X-Auth-Token с твоим токеном
+	const token = store.getState().USER.token;
+	config.headers['X-Auth-Token'] = token;
+
+	return config;
+});
 
 api.interceptors.response.use(
 	(response) => {

@@ -52,6 +52,7 @@ export enum IconType {
 	error,
 	refresh,
 	home,
+	check,
 
 	//theme
 	mapOutlined,
@@ -66,6 +67,7 @@ export enum IconType {
 	time,
 	object,
 	clock,
+	play,
 
 	attractions,
 	events,

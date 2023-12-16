@@ -133,3 +133,58 @@
 		margin-right: 16px;
 	}
 }
+
+.boxAudio {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.musim {
+	margin-top: 26px;
+}
+
+.itemEl {
+	position: relative;
+	display: flex;
+	width: 225px;
+	height: 150px;
+	justify-content: center;
+	align-items: center;
+	border-radius: 6px;
+	padding: 1px;
+	border: 1px dashed themeColor(--mui-palette-slate-200);
+
+	background: themeColor(--mui-palette-common-white);
+}
+
+.itemText {
+	display: flex;
+	align-items: center;
+	margin: 2px 0;
+	user-select: none;
+
+	.labelText {
+		font-size: 14px;
+		font-style: normal;
+		font-weight: 500;
+		line-height: 20px;
+		color: #94a3b8;
+	}
+}
+
+.dr {
+	width: 2px;
+	height: 2px;
+	border-radius: 100%;
+	background-color: #94a3b8;
+	margin-right: 6px;
+}
+
+.error {
+	color: red;
+	margin-top: 6px;
+}

@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import React from 'react';
 import {Typography, Grid} from '@mui/material';
 
-import InfomatLogo from './infomat_logo.png';
+import InfomatLogo from './logo.svg';
 
 import style from './Spinner.module.scss';
 

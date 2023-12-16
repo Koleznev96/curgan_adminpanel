@@ -11,7 +11,7 @@ const deleteCategoryObjectSaga = function* ({
 	payload,
 }: ReturnType<typeof categoryObjectClientToServerActions.deleteCategory>) {
 	try {
-		const {goCategoriesObjects} = yield* getNavigationContext();
+		const {goCategorysServices} = yield* getNavigationContext();
 		yield categoryObjectService.deleteItem(payload.id);
 		yield put(
 			notificationsClientOnlyActions.enqueuePersistent({
@@ -20,7 +20,7 @@ const deleteCategoryObjectSaga = function* ({
 				severity: EnumNotificationSeverity.SUCCESS,
 			}),
 		);
-		yield* call(goCategoriesObjects);
+		yield* call(goCategorysServices);
 	} catch (error) {
 		yield* put(categoryObjectClientOnlyActions.stopLoading());
 	}

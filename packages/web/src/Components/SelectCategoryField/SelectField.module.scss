@@ -34,24 +34,6 @@
 	}
 }
 
-:global(.MuiMenuItem-root) {
-	padding: 6px 12px;
-	border-radius: 6px;
-	margin: 0 5px 5px 5px;
-
-	&:hover {
-		background-color: themeColor(--mui-palette-primary-gradient-end);
-	}
-
-	&:global(.Mui-selected) {
-		background-color: themeColor(--mui-palette-primary-gradient-end);
-
-		&:hover {
-			background-color: themeColor(--mui-palette-primary-gradient-end);
-		}
-	}
-}
-
 :global(.MuiInputLabel-root) {
 	top: -7px;
 	color: themeColor(--mui-palette-text-disabled);
@@ -81,6 +63,24 @@
 
 	&.isSelect {
 		background-color: themeColor(--mui-palette-primary-gradient-end);
+		&:hover {
+			background-color: themeColor(--mui-palette-primary-gradient-end);
+		}
+
+		&:global(.Mui-selected) {
+			background-color: themeColor(--mui-palette-primary-gradient-end);
+
+			&:hover {
+				background-color: themeColor(--mui-palette-primary-gradient-end);
+			}
+		}
+	}
+
+	:global(.MuiMenuItem-root) {
+		padding: 6px 12px;
+		border-radius: 6px;
+		margin: 0 5px 5px 5px;
+
 		&:hover {
 			background-color: themeColor(--mui-palette-primary-gradient-end);
 		}

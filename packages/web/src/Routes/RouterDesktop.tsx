@@ -1,6 +1,8 @@
 import React, {lazy, Suspense} from 'react';
 import {createBrowserRouter, createRoutesFromElements, Route} from 'react-router-dom';
 
+import {EnumInfoType} from '@infomat/core/src/BusinessLogic/EnumInfoType';
+
 import LoginPage from 'src/Routes/Pages/Desktop/LoginPage';
 import ProtectedRoute from 'src/Routes/ProtectedRoute/ProtectedRoute';
 import PublicRoute from 'src/Routes/PublicRoute/PublicRoute';
@@ -14,29 +16,18 @@ const GeneralInformationPage = lazy(
 );
 const EditEventPage = lazy(() => import('src/Routes/Pages/Desktop/EditEventPage/EditEventPage'));
 const CategoryObjectPage = lazy(() => import('src/Routes/Pages/Desktop/CategoryObjectPage/CategoryObjectPage'));
-const SubcategoryObjectPage = lazy(
-	() => import('src/Routes/Pages/Desktop/SubcategoryObjectPage/SubcategoryObjectPage'),
-);
-const TouristObjectPage = lazy(() => import('src/Routes/Pages/Desktop/TouristObjectPage/TouristObjectPage'));
-const TouristObjectsListPage = lazy(
-	() => import('src/Routes/Pages/Desktop/TouristObjectsListPage/TouristObjectsListPage'),
-);
+const ServicePage = lazy(() => import('src/Routes/Pages/Desktop/ServicePage/ServicePage'));
+const ServicesListPage = lazy(() => import('src/Routes/Pages/Desktop/ServicesListPage/ServicesListPage'));
 const CategoryObjectsListPage = lazy(
 	() => import('src/Routes/Pages/Desktop/CategoryObjectsListPage/CategoryObjectsListPage'),
 );
-const SubcategoryObjectsListPage = lazy(
-	() => import('src/Routes/Pages/Desktop/SubcategoryObjectsListPage/SubcategoryObjectsListPage'),
-);
-const TouristRoutPage = lazy(() => import('src/Routes/Pages/Desktop/TouristRoutPage/TouristRoutPage'));
-const TouristRoutesListPage = lazy(
-	() => import('src/Routes/Pages/Desktop/TouristRoutesListPage/TouristRoutesListPage'),
-);
-const RecommendListPage = lazy(() => import('src/Routes/Pages/Desktop/RecommendListPage/RecommendListPage'));
 const EventsListPage = lazy(() => import('src/Routes/Pages/Desktop/EventsListPage/EventsListPage'));
-const SpecialPlacePage = lazy(() => import('src/Routes/Pages/Desktop/SpecialPlacePage/SpecialPlacePage'));
-const SpecialPlacesListPage = lazy(
-	() => import('src/Routes/Pages/Desktop/SpecialPlacesListPage/SpecialPlacesListPage'),
-);
+const AttractionsListPage = lazy(() => import('src/Routes/Pages/Desktop/AttractionsListPage/AttractionsListPage'));
+const AttractionPage = lazy(() => import('src/Routes/Pages/Desktop/AttractionPage/AttractionPage'));
+const AudioGuidesListPage = lazy(() => import('src/Routes/Pages/Desktop/AudioGuidesListPage/AudioGuidesListPage'));
+const MuseumGuidesListPage = lazy(() => import('src/Routes/Pages/Desktop/MuseumGuidesListPage/MuseumGuidesListPage'));
+const AudioGuidePage = lazy(() => import('src/Routes/Pages/Desktop/AudioGuidePage/AudioGuidePage'));
+const MuseumGuidePage = lazy(() => import('src/Routes/Pages/Desktop/MuseumGuidePage/MuseumGuidePage'));
 const NotFound = lazy(() => import('src/Routes/Pages/Common/NotFoundPage'));
 
 const RouterDesktop = createBrowserRouter(
@@ -60,7 +51,7 @@ const RouterDesktop = createBrowserRouter(
 					path={EnumRouteSlugs.RULES_TRAVELER}
 					element={
 						<Suspense>
-							<GeneralInformationPage />
+							<GeneralInformationPage type={EnumInfoType.RULE_OF_TRAVELLER} />
 						</Suspense>
 					}
 				/>
@@ -69,7 +60,7 @@ const RouterDesktop = createBrowserRouter(
 					path={EnumRouteSlugs.RULES_USER}
 					element={
 						<Suspense>
-							<GeneralInformationPage />
+							<GeneralInformationPage type={EnumInfoType.USER_AGREEMENT} />
 						</Suspense>
 					}
 				/>
@@ -78,7 +69,7 @@ const RouterDesktop = createBrowserRouter(
 					path={EnumRouteSlugs.PRIVACY_POLICY}
 					element={
 						<Suspense>
-							<GeneralInformationPage />
+							<GeneralInformationPage type={EnumInfoType.PRIVACY_POLICY} />
 						</Suspense>
 					}
 				/>
@@ -87,7 +78,7 @@ const RouterDesktop = createBrowserRouter(
 					path={EnumRouteSlugs.ABOUT}
 					element={
 						<Suspense>
-							<GeneralInformationPage />
+							<GeneralInformationPage type={EnumInfoType.ABOUT} />
 						</Suspense>
 					}
 				/>
@@ -96,7 +87,7 @@ const RouterDesktop = createBrowserRouter(
 					path={EnumRouteSlugs.HELP}
 					element={
 						<Suspense>
-							<GeneralInformationPage />
+							<GeneralInformationPage type={EnumInfoType.HELP} />
 						</Suspense>
 					}
 				/>
@@ -105,7 +96,7 @@ const RouterDesktop = createBrowserRouter(
 					path={EnumRouteSlugs.FEEDBACK}
 					element={
 						<Suspense>
-							<GeneralInformationPage />
+							<GeneralInformationPage type={EnumInfoType.FEEDBACK} />
 						</Suspense>
 					}
 				/>
@@ -133,7 +124,7 @@ const RouterDesktop = createBrowserRouter(
 					path={EnumRouteSlugs.ATTRACTION}
 					element={
 						<Suspense>
-							<TouristRoutPage />
+							<AttractionPage />
 						</Suspense>
 					}
 				/>
@@ -142,7 +133,7 @@ const RouterDesktop = createBrowserRouter(
 					path={EnumRouteSlugs.ATTRACTIONS}
 					element={
 						<Suspense>
-							<TouristRoutesListPage />
+							<AttractionsListPage />
 						</Suspense>
 					}
 				/>
@@ -151,7 +142,7 @@ const RouterDesktop = createBrowserRouter(
 					path={EnumRouteSlugs.SERVICE}
 					element={
 						<Suspense>
-							<SubcategoryObjectPage />
+							<ServicePage />
 						</Suspense>
 					}
 				/>
@@ -160,7 +151,7 @@ const RouterDesktop = createBrowserRouter(
 					path={EnumRouteSlugs.SERVICES}
 					element={
 						<Suspense>
-							<SubcategoryObjectsListPage />
+							<ServicesListPage />
 						</Suspense>
 					}
 				/>
@@ -182,13 +173,12 @@ const RouterDesktop = createBrowserRouter(
 						</Suspense>
 					}
 				/>
-
 				<Route
 					loader={(args) => pageLoader(store, EnumRouteSlugs.AUDIO_GUIDE, args)(args)}
 					path={EnumRouteSlugs.AUDIO_GUIDE}
 					element={
 						<Suspense>
-							<TouristObjectPage />
+							<AudioGuidePage />
 						</Suspense>
 					}
 				/>
@@ -197,7 +187,7 @@ const RouterDesktop = createBrowserRouter(
 					path={EnumRouteSlugs.AUDIO_GUIDES}
 					element={
 						<Suspense>
-							<TouristObjectsListPage />
+							<AudioGuidesListPage />
 						</Suspense>
 					}
 				/>
@@ -207,7 +197,7 @@ const RouterDesktop = createBrowserRouter(
 					path={EnumRouteSlugs.MUSEUM_GUIDE}
 					element={
 						<Suspense>
-							<SpecialPlacePage />
+							<MuseumGuidePage />
 						</Suspense>
 					}
 				/>
@@ -216,7 +206,7 @@ const RouterDesktop = createBrowserRouter(
 					path={EnumRouteSlugs.MUSEUM_GUIDES}
 					element={
 						<Suspense>
-							<SpecialPlacesListPage />
+							<MuseumGuidesListPage />
 						</Suspense>
 					}
 				/>

@@ -6,7 +6,6 @@ import createItemSaga from './Sagas/createItemSaga';
 import deleteItemSaga from './Sagas/deleteItemSaga';
 import getDataSaga from './Sagas/getDataSaga';
 import {placesClientToServerActions} from './Actions/placesClientToServerActions';
-import deleteRecommendSaga from './Sagas/deleteRecommendSaga';
 import getSearchSaga from './Sagas/getSearchSaga';
 
 function* placesSagaWatcher() {
@@ -16,7 +15,6 @@ function* placesSagaWatcher() {
 	yield* takeEvery(placesClientToServerActions.updateCategory.type, updateItemSaga);
 	yield* takeEvery(placesClientToServerActions.createCategory.type, createItemSaga);
 	yield* takeEvery(placesClientToServerActions.deleteCategory.type, deleteItemSaga);
-	yield* takeEvery(placesClientToServerActions.deleteRecommend.type, deleteRecommendSaga);
 }
 
 export default placesSagaWatcher;

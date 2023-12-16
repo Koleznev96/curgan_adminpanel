@@ -14,12 +14,12 @@ const createCategoryObjectSaga = function* ({
 	payload,
 }: ReturnType<typeof categoryObjectClientToServerActions.createCategory>) {
 	try {
-		const {goCategoryObject} = yield* getNavigationContext();
+		const {goCategoryServices} = yield* getNavigationContext();
 
 		const response: AxiosResponse = yield categoryObjectService.createItem(payload);
 		const data: TRespounseData<TCategoryObjectVM> = response.data;
 
-		yield* call(goCategoryObject, data.data.id);
+		yield* call(goCategoryServices, data.data.id);
 
 		yield* take(categoryObjectClientOnlyActions.setData.type);
 		yield put(

@@ -20,6 +20,7 @@ import {
 	VisibilityOff,
 	Warning,
 	PlaceOutlined,
+	Check,
 } from '@mui/icons-material';
 
 import {ReactComponent as MapOutlined} from '@infomat/uikit/src/Assets/Icons/map.svg';
@@ -40,6 +41,7 @@ import {ReactComponent as Services} from '@infomat/uikit/src/Assets/Icons/servic
 import {ReactComponent as AudioGuide} from '@infomat/uikit/src/Assets/Icons/audioGuide.svg';
 import {ReactComponent as MuseumGuide} from '@infomat/uikit/src/Assets/Icons/museumGuide.svg';
 import {ReactComponent as GeneralInformation} from '@infomat/uikit/src/Assets/Icons/generalInformation.svg';
+import {ReactComponent as Play} from '@infomat/uikit/src/Assets/Icons/play.svg';
 
 import {IconType} from '@infomat/uikit/src/Icon/types';
 
@@ -66,6 +68,7 @@ export const iconsMap = {
 	[IconType.refresh]: Refresh,
 	[IconType.home]: Home,
 	[IconType.insertDriveFile]: InsertDriveFile,
+	[IconType.check]: Check,
 	// theme
 	[IconType.mapOutlined]: MapOutlined,
 	[IconType.route]: Route,
@@ -79,6 +82,7 @@ export const iconsMap = {
 	[IconType.time]: Time,
 	[IconType.object]: PlaceOutlined,
 	[IconType.clock]: Clock,
+	[IconType.play]: Play,
 
 	[IconType.attractions]: Attractions,
 	[IconType.events]: Events,

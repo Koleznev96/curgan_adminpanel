@@ -37,7 +37,7 @@
 :global(.MuiMenuItem-root) {
 	padding: 6px 12px;
 	border-radius: 6px;
-	margin: 0 5px 5px 5px;
+	// margin: 0 5px 5px 5px;
 
 	&:hover {
 		background-color: themeColor(--mui-palette-primary-gradient-end);

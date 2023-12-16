@@ -1,0 +1,23 @@
+@import '@infomat/uikit/src/themeUtils';
+
+.label {
+	color: themeColor(--mui-palette-text-primary);
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 20px;
+	margin-bottom: 6px;
+}
+
+.button {
+	margin-right: 16px;
+}
+
+.qr {
+	width: 225px;
+	height: 150px;
+	padding: 6px 43px;
+	stroke-width: 1px;
+	stroke: #e2e8f0;
+	margin-bottom: 10px;
+}

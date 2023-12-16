@@ -20,7 +20,7 @@ const CategoryObjectsList = ({
 	isLoading,
 	search,
 }: TCategoryObjectsListProps) => {
-	const TouristObjectCreateLink = useRouterLinkForMui(Routes.categoryObject());
+	const objectCreateLink = useRouterLinkForMui(Routes.categoryServices());
 
 	return (
 		<PageListIteration
@@ -29,8 +29,8 @@ const CategoryObjectsList = ({
 			isLoading={isLoading}
 			isEmptyList={_.isEmpty(categoryObjectIds)}
 			getData={getData}
-			labelAdd="Добавить объект"
-			addLink={TouristObjectCreateLink}
+			labelAdd="Добавить категорию услуг"
+			addLink={objectCreateLink}
 			startCrrentPageNumber={currentPage}
 			startValueLimit={size}
 		>

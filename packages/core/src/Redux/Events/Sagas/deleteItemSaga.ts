@@ -13,7 +13,7 @@ const deleteItemSaga = function* ({payload}: ReturnType<typeof eventsClientToSer
 		yield eventsService.deleteItem(payload.id);
 		yield put(
 			notificationsClientOnlyActions.enqueuePersistent({
-				notificationTitle: 'Мероприятие успешно удалено',
+				notificationTitle: 'Событие успешно удалено',
 				duration: 5000,
 				severity: EnumNotificationSeverity.SUCCESS,
 			}),

@@ -9,11 +9,11 @@ import {TCategoryObjectVM} from '@infomat/core/src/Redux/CategoryObject/entityAd
 import Dashboard from '@infomat/uikit/src/Dashboard/Dashboard';
 
 import style from './SelectField.module.scss';
-import {TSubcategoryObjectVM} from '@infomat/core/src/Redux/SubcategoryObject/entityAdapter';
 
 const SelectField = ({label, placeholder, items, value, onChange, isLoading}: TSelectField) => {
 	const filterItems = _.filter(items, (item) => item.id !== value);
 	const currentItem = _.find(items, (item) => item.id === value);
+
 	return (
 		<Grid container direction="column" className={style.root}>
 			{label && <Typography className={style.label}>{label}</Typography>}
@@ -57,7 +57,7 @@ const SelectField = ({label, placeholder, items, value, onChange, isLoading}: TS
 };
 
 type TSelectField = {
-	items?: (TCategoryObjectVM | TSubcategoryObjectVM)[];
+	items?: TCategoryObjectVM[];
 	onChange: PropertyHandler<number>;
 	label?: string;
 	placeholder?: string;

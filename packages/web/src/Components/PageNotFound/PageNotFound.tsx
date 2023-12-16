@@ -2,7 +2,7 @@ import {Dialog, DialogContent, DialogContentText, DialogTitle} from '@mui/materi
 import React, {useState} from 'react';
 import {Navigate} from 'react-router';
 
-import Infomat from 'src/Assets/Images/infomat_logo.png';
+import Infomat from 'src/Assets/Images/icons/logo.svg';
 import {Routes} from 'src/Routes/Routes';
 
 import './_PageNotFound.scss';

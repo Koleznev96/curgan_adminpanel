@@ -67,13 +67,42 @@ export type TFileLocal = {
 
 export type TFileCrop = {
 	id?: number;
-	urlOriginal?: File | null | string;
-	url3x2Original?: File | null | string;
-	url3x2?: File | null | string;
 	partName?: string;
+	urlOriginal?: File | null | string;
+	url3x2?: File | null | string;
+	url1x1Small?: File | null | string;
+	url1x1Medium?: File | null | string;
+	url16x9Small?: File | null | string;
+	url16x9Medium?: File | null | string;
+	url16x9Large?: File | null | string;
 };
 
 export type TFrameCrop =
+	| {
+			partName?: string | null;
+			isFile?: boolean;
+			frame1x1?: {
+				x?: number;
+				y?: number;
+				width?: number;
+				height?: number;
+			};
+			frame3x2?: {
+				x?: number;
+				y?: number;
+				width?: number;
+				height?: number;
+			};
+			frame16x19?: {
+				x?: number;
+				y?: number;
+				width?: number;
+				height?: number;
+			};
+	  }
+	| undefined;
+
+export type TFrameCropOne =
 	| {
 			partName?: string | null;
 			x?: number;

@@ -9,16 +9,16 @@ import {getNavigationContext} from '@infomat/core/src/Redux/sagaContext';
 
 const deleteItemSaga = function* ({payload}: ReturnType<typeof placesClientToServerActions.deleteCategory>) {
 	try {
-		const {goTouristObjects} = yield* getNavigationContext();
+		const {goAttractions} = yield* getNavigationContext();
 		yield placesService.deleteItem(payload.id);
 		yield put(
 			notificationsClientOnlyActions.enqueuePersistent({
-				notificationTitle: 'Туристический объект успешно удален',
+				notificationTitle: 'Достопримечательность объект успешно удалена',
 				duration: 5000,
 				severity: EnumNotificationSeverity.SUCCESS,
 			}),
 		);
-		yield* call(goTouristObjects);
+		yield* call(goAttractions);
 	} catch (error) {
 		yield* put(placesClientOnlyActions.stopLoading());
 	}

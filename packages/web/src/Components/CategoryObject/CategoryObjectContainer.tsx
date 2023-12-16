@@ -19,15 +19,15 @@ const CategoryObjectContainer = ({id}: TCategoryObjectContainerProps) => {
 	const onDelete = useActionDispatcher(categoryObjectClientToServerActions.deleteCategory);
 	const onUpdate = useActionDispatcher(categoryObjectClientToServerActions.updateCategory);
 	const onCreate = useActionDispatcher(categoryObjectClientToServerActions.createCategory);
-	const CategoriesObjectsLink = useRouterLinkForMui(Routes.categoriesObjects);
+	const ObjectsLink = useRouterLinkForMui(Routes.categoriesServices);
 
 	const dataVM = isUndefined(id) ? undefined : categoryObjectVM;
 
 	return (
 		<Page
 			isLoading={isLoading || (isUndefined(dataVM) && !isUndefined(id))}
-			backLink={CategoriesObjectsLink}
-			label={isUndefined(id) ? 'Создание категории объектов' : 'Редактирование категории объектов'}
+			backLink={ObjectsLink}
+			label={isUndefined(id) ? 'Создание категории услуг' : 'Редактирование категории услуг'}
 		>
 			<CategoryObject
 				id={id}

@@ -1,15 +1,16 @@
 import {put, select} from 'typed-redux-saga';
 import _ from 'lodash';
 
+import {EnumInfoType} from '@infomat/core/src/BusinessLogic/EnumInfoType';
 import {selectIsLoggedIn} from '@infomat/core/src/Redux/User/Selectors/selectIsLoggedIn';
 import {routingClientOnlyActions} from '@infomat/core/src/Redux/Routing/Actions/routingClientOnlyActions';
 import {informationClientToServerActions} from '@infomat/core/src/Redux/Information/Actions/informationClientToServerActions';
 import {categoryObjectClientToServerActions} from '@infomat/core/src/Redux/CategoryObject/Actions/categoryObjectClientToServerActions';
-import {subcategoryObjectClientToServerActions} from '@infomat/core/src/Redux/SubcategoryObject/Actions/subcategoryObjectClientToServerActions';
+import {serviceClientToServerActions} from '@infomat/core/src/Redux/Service/Actions/serviceClientToServerActions';
 import {placesClientToServerActions} from '@infomat/core/src/Redux/Places/Actions/placesClientToServerActions';
+import {audioGuideClientToServerActions} from '@infomat/core/src/Redux/AudioGuide/Actions/audioGuideClientToServerActions';
 import {eventsClientToServerActions} from '@infomat/core/src/Redux/Events/Actions/eventsClientToServerActions';
-import {routesClientToServerActions} from '@infomat/core/src/Redux/Routes/Actions/routesClientToServerActions';
-import {specialPlacesClientToServerActions} from '@infomat/core/src/Redux/SpecialPlace/Actions/specialPlacesClientToServerActions';
+import {museumGuideClientToServerActions} from '@infomat/core/src/Redux/MuseumGuide/Actions/museumGuideClientToServerActions';
 
 import {EnumRouteSlugs} from 'src/Routes/EnumRouteSlugs';
 
@@ -29,64 +30,51 @@ export const updateStateOnChatNavigationSaga = function* ({
 		}
 
 		if (path === EnumRouteSlugs.RULES_TRAVELER) {
-			yield* put(informationClientToServerActions.getDeatails());
+			yield* put(informationClientToServerActions.getInfo(EnumInfoType.RULE_OF_TRAVELLER));
 		}
 
 		if (path === EnumRouteSlugs.RULES_USER) {
-			yield* put(informationClientToServerActions.getDeatails());
+			yield* put(informationClientToServerActions.getInfo(EnumInfoType.USER_AGREEMENT));
 		}
 
 		if (path === EnumRouteSlugs.PRIVACY_POLICY) {
-			yield* put(informationClientToServerActions.getDeatails());
+			yield* put(informationClientToServerActions.getInfo(EnumInfoType.PRIVACY_POLICY));
 		}
 
 		if (path === EnumRouteSlugs.ABOUT) {
-			yield* put(informationClientToServerActions.getDeatails());
+			yield* put(informationClientToServerActions.getInfo(EnumInfoType.ABOUT));
 		}
 
 		if (path === EnumRouteSlugs.HELP) {
-			yield* put(informationClientToServerActions.getDeatails());
+			yield* put(informationClientToServerActions.getInfo(EnumInfoType.HELP));
 		}
 
 		if (path === EnumRouteSlugs.FEEDBACK) {
-			yield* put(informationClientToServerActions.getDeatails());
+			yield* put(informationClientToServerActions.getInfo(EnumInfoType.FEEDBACK));
 		}
 
 		if (path === EnumRouteSlugs.ATTRACTIONS) {
-			yield* put(categoryObjectClientToServerActions.getList({}));
+			yield* put(placesClientToServerActions.getList({}));
 		}
 
 		if (path === EnumRouteSlugs.CATEGORIES_SERVICES) {
-			yield* put(specialPlacesClientToServerActions.getList({}));
+			yield* put(categoryObjectClientToServerActions.getList({}));
 		}
 
 		if (path === EnumRouteSlugs.AUDIO_GUIDES) {
-			yield* put(subcategoryObjectClientToServerActions.getList({}));
+			yield* put(audioGuideClientToServerActions.getList({}));
 		}
-
-		// if (path === EnumRouteSlugs.TOURIST_OBJECTS) {
-		// 	yield* put(
-		// 		placesClientToServerActions.getList({
-		// 			recommendedOnly: null,
-		// 			page: 0,
-		// 			search: '',
-		// 			status: null,
-		// 			subcategoryId: null,
-		// 		}),
-		// 	);
-		// 	yield* put(subcategoryObjectClientToServerActions.getAllList());
-		// }
 
 		if (path === EnumRouteSlugs.EVENTS) {
 			yield* put(eventsClientToServerActions.getList({}));
 		}
 
 		if (path === EnumRouteSlugs.MUSEUM_GUIDES) {
-			yield* put(routesClientToServerActions.getList({}));
+			yield* put(museumGuideClientToServerActions.getList({}));
 		}
 
 		if (path === EnumRouteSlugs.MUSEUM_GUIDE && id !== 'new') {
-			yield* put(routesClientToServerActions.get(Number(id)));
+			yield* put(museumGuideClientToServerActions.get(Number(id)));
 		}
 
 		if (path === EnumRouteSlugs.EVENT && id !== 'new') {
@@ -94,25 +82,27 @@ export const updateStateOnChatNavigationSaga = function* ({
 		}
 
 		if (path === EnumRouteSlugs.AUDIO_GUIDE && id !== 'new') {
-			yield* put(categoryObjectClientToServerActions.get(Number(id)));
+			yield* put(audioGuideClientToServerActions.get(Number(id)));
 		}
 
 		if (path === EnumRouteSlugs.CATEGORIE_SERVICES && id !== 'new') {
-			yield* put(specialPlacesClientToServerActions.get(Number(id)));
+			yield* put(categoryObjectClientToServerActions.get(Number(id)));
 		}
 
-		// if (path === EnumRouteSlugs.SUBCATEGORY_OBJECT) {
-		// 	yield* put(categoryObjectClientToServerActions.getAllList());
-		// 	if (id !== 'new') {
-		// 		yield* put(subcategoryObjectClientToServerActions.get(Number(id)));
-		// 	}
-		// }
+		if (path === EnumRouteSlugs.ATTRACTION && id !== 'new') {
+			yield* put(placesClientToServerActions.get(Number(id)));
+		}
 
-		// if (path === EnumRouteSlugs.TOURIST_OBJECT) {
-		// 	yield* put(subcategoryObjectClientToServerActions.getAllList());
-		// 	if (id !== 'new') {
-		// 		yield* put(placesClientToServerActions.get(Number(id)));
-		// 	}
-		// }
+		if (path === EnumRouteSlugs.SERVICES) {
+			yield* put(serviceClientToServerActions.getList({}));
+			yield* put(categoryObjectClientToServerActions.getAllList());
+		}
+
+		if (path === EnumRouteSlugs.SERVICE) {
+			yield* put(categoryObjectClientToServerActions.getAllList());
+			if (id !== 'new') {
+				yield* put(serviceClientToServerActions.get(Number(id)));
+			}
+		}
 	} catch (error) {}
 };

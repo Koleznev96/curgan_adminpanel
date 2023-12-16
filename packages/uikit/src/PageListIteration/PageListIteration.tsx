@@ -31,9 +31,9 @@ const PageListIteration = ({
 	const [valueLimit, setValueLimit] = useState(startValueLimit);
 
 	useEffect(() => {
-		setSearch(startSearch)
-		setCurrentPageNumber(startCrrentPageNumber)
-	}, [startSearch, startCrrentPageNumber])
+		setSearch(startSearch);
+		setCurrentPageNumber(startCrrentPageNumber);
+	}, [startSearch, startCrrentPageNumber]);
 
 	const decrementFullPage = useCallback(() => {
 		setCurrentPageNumber(0);

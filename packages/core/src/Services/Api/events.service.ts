@@ -27,18 +27,18 @@ async function getList({
 }) {
 	const orederBy = '&orderBy=' + (startDate ? 'ASC' : 'DESC');
 	return api.get(
-		`/events?page=${page}&size=${size}${!isUndefined(search) ? '&search=' + search : ''}${
+		`/event?page=${page}&size=${size}${!isUndefined(search) ? '&search=' + search : ''}${
 			!isUndefined(status) && status !== null ? '&status=' + status : ''
 		}${!isUndefined(startDate) && startDate !== null ? orederBy : ''}`,
 	);
 }
 
 async function getItem(id: number) {
-	return api.get(`/events/${id}`);
+	return api.get(`/event/${id}`);
 }
 
 async function deleteItem(id: number) {
-	return api.delete(`/events/${id}`);
+	return api.delete(`/event/${id}`);
 }
 
 async function updateItem({id, cover, photos, frames, ...data}: TEventsCreate) {
@@ -61,7 +61,7 @@ async function updateItem({id, cover, photos, frames, ...data}: TEventsCreate) {
 		}
 	}
 
-	return api.patch(`/events/${id}`, formData);
+	return api.patch(`/event/${id}`, formData);
 }
 
 async function createItem({id, cover, photos, frames, ...data}: TEventsCreate) {
@@ -84,5 +84,5 @@ async function createItem({id, cover, photos, frames, ...data}: TEventsCreate) {
 		}
 	}
 
-	return api.post(`/events`, formData);
+	return api.post(`/event`, formData);
 }

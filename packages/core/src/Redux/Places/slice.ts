@@ -42,14 +42,8 @@ const placesSlice = createSlice<TPlacesSlice, SliceCaseReducers<TPlacesSlice>, E
 			state.error = undefined;
 			state.sizePage = !_.isUndefined(action.payload.size) ? action.payload.size : state.sizePage;
 			state.search = !_.isUndefined(action.payload.search) ? action.payload.search : state.search;
-			state.subcategoryId = !_.isUndefined(action.payload.subcategoryId)
-				? action.payload.subcategoryId
-				: state.subcategoryId;
 			state.currentPage = !_.isUndefined(action.payload.page) ? action.payload.page : state.currentPage;
 			state.status = !_.isUndefined(action.payload.status) ? action.payload.status : state.status;
-			state.recommendedOnly = !_.isUndefined(action.payload.recommendedOnly)
-				? action.payload.recommendedOnly
-				: state.recommendedOnly;
 		});
 		builder.addCase(placesClientToServerActions.updateCategory, (state) => {
 			state.isLoading = true;
@@ -60,11 +54,6 @@ const placesSlice = createSlice<TPlacesSlice, SliceCaseReducers<TPlacesSlice>, E
 			state.error = undefined;
 		});
 		builder.addCase(placesClientToServerActions.deleteCategory, (state) => {
-			state.data = undefined;
-			state.isLoading = true;
-			state.error = undefined;
-		});
-		builder.addCase(placesClientToServerActions.deleteRecommend, (state) => {
 			state.data = undefined;
 			state.isLoading = true;
 			state.error = undefined;
@@ -105,12 +94,10 @@ export type TPlacesSlice = EntityState<TPlacesVM> & {
 	isLoading: boolean;
 	error?: string;
 	search: string;
-	subcategoryId?: number | null;
 	currentPage: number;
 	totalPages: number;
 	sizePage: number;
 	status?: string | null;
-	recommendedOnly?: boolean | null;
 	list: TPlacesVM[];
 };
 

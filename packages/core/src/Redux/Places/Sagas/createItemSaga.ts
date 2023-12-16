@@ -12,17 +12,17 @@ import {TPlacesVM} from '@infomat/core/src/Redux/Places/entityAdapter';
 
 const createItemSaga = function* ({payload}: ReturnType<typeof placesClientToServerActions.createCategory>) {
 	try {
-		const {goTouristObject} = yield* getNavigationContext();
+		const {goAttraction} = yield* getNavigationContext();
 
 		const response: AxiosResponse = yield placesService.createItem(payload);
 		const data: TRespounseData<TPlacesVM> = response.data;
 
-		yield* call(goTouristObject, data.data.id);
+		yield* call(goAttraction, data.data.id);
 
 		yield* take(placesClientOnlyActions.setData.type);
 		yield put(
 			notificationsClientOnlyActions.enqueuePersistent({
-				notificationTitle: 'Туристический объект успешно создан',
+				notificationTitle: 'Достопримечательность успешно создана',
 				duration: 5000,
 				severity: EnumNotificationSeverity.SUCCESS,
 			}),

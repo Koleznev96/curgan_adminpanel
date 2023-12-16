@@ -14,6 +14,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import './index.css';
+import 'react-quill/dist/quill.snow.css';
 
 const container = document.getElementById('bodycontainer');
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion

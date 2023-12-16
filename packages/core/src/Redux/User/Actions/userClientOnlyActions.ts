@@ -32,7 +32,7 @@ class UserClientOnlyActions extends ClientOnlyActions<EnumStore.USER> {
 
 	resetStore = this.createAction(EnumClientOnlyActions.RESET_STORE);
 
-	login = this.createAction(EnumClientOnlyActions.LOGIN_IN, this.getPrepareAction<string | undefined>());
+	login = this.createAction(EnumClientOnlyActions.LOGIN_IN, this.getPrepareAction<string>());
 }
 
 export const userClientOnlyActions = new UserClientOnlyActions();

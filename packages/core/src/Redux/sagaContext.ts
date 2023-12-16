@@ -20,6 +20,7 @@ export type TSagaContext = {
 		goAudioGuides: (options?: TNavigateOptions) => void;
 		goSategoriesServices: (options?: TNavigateOptions) => void;
 		goServices: (options?: TNavigateOptions) => void;
+		goCategorysServices: (options?: TNavigateOptions) => void;
 		goAttractions: (options?: TNavigateOptions) => void;
 		goEvents: (options?: TNavigateOptions) => void;
 		goFeedback: (options?: TNavigateOptions) => void;

@@ -11,7 +11,7 @@ const loginUserSaga = function* ({payload: {password, login}}: ReturnType<typeof
 		if (!_.isEmpty(password) && !_.isEmpty(login)) {
 			const response: AxiosResponse = yield authService.login(login, password);
 			if (response.status === 200 || response.status === 201) {
-				yield* put(userClientOnlyActions.login());
+				yield* put(userClientOnlyActions.login(response.headers['x-auth-token']));
 			}
 		}
 	} catch (error) {

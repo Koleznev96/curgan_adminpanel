@@ -5,7 +5,7 @@ This monorepo using [Yarn Workspaces](https://yarnpkg.com/features/workspaces)
 Structure:
 
 ```
-infomat/
+adminpanel/
   package.json
   packages/
     core/

@@ -1,6 +1,6 @@
 import {createEntityAdapter} from '@reduxjs/toolkit';
 import {PartialBy} from '@infomat/core/src/Types/PartialBy';
-import {TFile, TFileLocal} from '../../Types/media';
+import {TFile, TFileCrop, TFileLocal, TFrameCrop} from '../../Types/media';
 
 export const categoryObjectAdapter = createEntityAdapter<TCategoryObjectVM>({
 	selectId: (categoryObject: TCategoryObjectVM) => categoryObject.id,
@@ -8,18 +8,16 @@ export const categoryObjectAdapter = createEntityAdapter<TCategoryObjectVM>({
 
 export type TCategoryObjectCreate = {
 	id?: number;
-	color?: string;
-	backgroundColor?: string;
-	title?: string;
-	titleEn?: string;
-	icon?: TFile | TFileLocal;
-	description?: string;
-	descriptionEn?: string;
+	cover: TFileCrop;
+	title: string;
+	titleEn: string;
+	icon: TFile | TFileLocal;
+	coverFrame?: TFrameCrop;
 };
 
 export type TCategoryObjectVM = {
 	id: number;
-	backgroundColor: string;
+	cover: TFile;
 	title: string;
 	titleEn: string;
 	icon: TFile;

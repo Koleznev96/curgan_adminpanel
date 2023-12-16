@@ -20,9 +20,10 @@ function getWithExpiry(key: string, toParse?: boolean) {
 export const initialUserState = {
 	login: getWithExpiry('login', false),
 	isNetworkAvailable: navigator.onLine,
-	isLoggedIn: !!getWithExpiry('isLogin', true),
+	isLoggedIn: !!getWithExpiry('token', false),
 	isLoading: false,
 	errorLogin: undefined,
+	token: getWithExpiry('token', false),
 };
 
 const getDefaultState = (currentState: TUserSlice) => ({
@@ -46,7 +47,8 @@ const userSlice = createSlice<TUserSlice, SliceCaseReducers<TUserSlice>, EnumSto
 			state.isLoading = true;
 		});
 		builder.addCase(userClientOnlyActions.login, (state, action) => {
-			localStorage.setItem('isLogin', 'true');
+			localStorage.setItem('token', action.payload);
+			state.token = action.payload;
 			state.isLoggedIn = true;
 			state.isLoading = false;
 			state.errorLogin = undefined;
@@ -57,11 +59,12 @@ const userSlice = createSlice<TUserSlice, SliceCaseReducers<TUserSlice>, EnumSto
 			state.errorLogin = action.payload.error;
 		});
 		builder.addCase(userClientOnlyActions.logout, (state) => {
-			localStorage.setItem('isLogin', 'false');
+			localStorage.removeItem('token');
 			localStorage.removeItem('login');
 			state.isLoggedIn = false;
 			state.isLoading = false;
 			state.login = undefined;
+			state.token = undefined;
 			// return getDefaultState(state);
 		});
 	},
@@ -73,6 +76,7 @@ export type TUserSlice = {
 	isLoggedIn?: boolean;
 	isLoading: boolean;
 	errorLogin?: string;
+	token?: string;
 };
 
 export default userSlice;

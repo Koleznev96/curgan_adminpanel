@@ -42,6 +42,7 @@ const categoryObjectSlice = createSlice<TCategoryObjectSlice, SliceCaseReducers<
 			state.sizePage = !_.isUndefined(action.payload.size) ? action.payload.size : state.sizePage;
 			state.search = !_.isUndefined(action.payload.search) ? action.payload.search : state.search;
 			state.currentPage = !_.isUndefined(action.payload.page) ? action.payload.page : state.currentPage;
+			state.status = !_.isUndefined(action.payload.status) ? action.payload.status : state.status;
 		});
 		builder.addCase(categoryObjectClientToServerActions.updateCategory, (state) => {
 			state.isLoading = true;
@@ -84,6 +85,7 @@ export type TCategoryObjectSlice = EntityState<TCategoryObjectVM> & {
 	currentPage: number;
 	totalPages: number;
 	sizePage: number;
+	status?: string | null;
 };
 
 export default categoryObjectSlice;

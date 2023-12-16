@@ -2,95 +2,66 @@ import React, {useCallback, useState} from 'react';
 import {Grid} from '@mui/material';
 import _ from 'lodash';
 
-import {TFile, TVideo} from '@infomat/core/src/Types/media';
 import PropertyHandler from '@infomat/core/src/Types/PropertyHandler';
 import ButtonWithTooltip from '@infomat/uikit/src/Button/ButtonWithTooltip';
 import TextField from '@infomat/uikit/src/Fields/TextField/TextField';
+import TextFieldEditor from '@infomat/uikit/src/Fields/TextFieldEditor/TextFieldEditor';
 import {TInformationVM} from '@infomat/core/src/Redux/Information/type';
-import FileFiledWithPreview from '@infomat/uikit/src/Fields/FileFiledWithPreview/FileFiledWithPreview';
+import SwitchLanguageField from '@infomat/uikit/src/Fields/SwitchLanguageField/SwitchLanguageField';
 
 import style from './GeneralInformation.module.scss';
-import {checkUrlsNull} from 'src/Utils/checkFile';
 
 const GeneralInformation = ({onSubmit, data}: TGeneralInformationProps) => {
-	const [yandex, setYandex] = useState(data?.yandexMetricCode || '');
-	const [labelRu, setLabelRu] = useState(data?.title || '');
-	const [labelEng, setLabelEng] = useState(data?.titleEn || '');
-	const [videos, setVideos] = useState<TVideo[]>(data?.videos || []);
-	const [videoIdsForRemoving, setVideoIdsForRemoving] = useState<number[]>([]);
+	const [name, setName] = useState(data?.name || '');
+	const [nameEn, setNameEn] = useState(data?.nameEn || '');
+	const [history, setHistory] = useState(data?.history || '');
+	const [historyEn, setHistoryEn] = useState(data?.historyEn || '');
+	const [leng, setLeng] = useState('ru');
 
-	const isDisabledSave = !labelRu.length || checkUrlsNull(videos);
+	const isDisabledSave = !name.length || !nameEn.length;
+
+	const nameValue = leng === 'ru' ? name : nameEn;
+	const setNameValue = leng === 'ru' ? setName : setNameEn;
+	const historyValue = leng === 'ru' ? history : historyEn;
+	const setHistoryValue = leng === 'ru' ? setHistory : setHistoryEn;
 
 	const onSave = useCallback(() => {
 		onSubmit({
-			yandexMetricCode: yandex,
-			title: labelRu,
-			titleEn: labelEng,
-			videos: videos,
-			videoIdsForRemoving: videoIdsForRemoving,
+			name,
+			nameEn,
+			history,
+			historyEn,
 		});
-	}, [yandex, labelRu, labelEng, videos, videoIdsForRemoving, onSubmit]);
-
-	const onAttach = useCallback(
-		(index: number, file: File | null) => {
-			const id = videos[index]?.id;
-			if (file === null && !_.isUndefined(id)) {
-				const videoIdsForRemovingNew = [...videoIdsForRemoving];
-				videoIdsForRemovingNew.push(id);
-				setVideoIdsForRemoving(videoIdsForRemovingNew);
-			}
-			const videosNew = [...videos];
-			if (_.isUndefined(videosNew[index])) {
-				do {
-					videosNew.push({url: null});
-				} while (_.isUndefined(videosNew[index]));
-			}
-			videosNew[index] = {url: file};
-			setVideos(videosNew);
-		},
-		[setVideos, videos, videoIdsForRemoving, setVideoIdsForRemoving],
-	);
+	}, [name, nameEn, history, historyEn, onSubmit]);
 
 	return (
 		<Grid container spacing={3}>
-			<Grid item xs={12} md={6}>
-				<TextField
-					label={'Код счетчика Яндекс.Метрики'}
-					variant="outlined"
-					multiline
-					tabIndex={1}
-					onChange={(e) => setYandex(e.target.value)}
-					value={yandex}
-					rows={8}
-					placeholder="<!-- Yandex.Metrika counter -->"
-				/>
+			<Grid item container xs={12} md={12}>
+				<SwitchLanguageField onChange={setLeng} value={leng} />
 			</Grid>
 			<Grid item xs={12} md={6}>
 				<TextField
-					label={'Заголовок на русском языке*'}
+					label={
+						leng === 'ru'
+							? 'Заголовок на главном экране (русский язык)*'
+							: 'Заголовок на главном экране (английский язык)'
+					}
 					variant="outlined"
 					tabIndex={2}
-					onChange={(e) => setLabelRu(e.target.value)}
-					value={labelRu}
+					onChange={(e) => setNameValue(e.target.value)}
+					value={nameValue}
 					placeholder="Заголовок"
 					className={style.marginBottom}
 				/>
-				<TextField
-					label={'Заголовок на английском языке'}
-					variant="outlined"
-					tabIndex={3}
-					onChange={(e) => setLabelEng(e.target.value)}
-					value={labelEng}
-					placeholder="Title"
-				/>
 			</Grid>
-			<Grid item container xs={12} md={12}>
-				<FileFiledWithPreview
-					totalFiles={7}
-					isVideoAllowed
-					onAttach={onAttach}
-					files={videos}
-					label="Видео на главном экране*"
+			<Grid item xs={12} md={12}>
+				<TextFieldEditor
+					label={leng === 'ru' ? 'Описание (русский язык)*' : 'Описание (английский язык)'}
+					setValue={setHistoryValue}
+					value={historyValue}
+					placeholder="Заголовок"
+					height={250}
+					isImage
 				/>
 			</Grid>
 			<Grid item>

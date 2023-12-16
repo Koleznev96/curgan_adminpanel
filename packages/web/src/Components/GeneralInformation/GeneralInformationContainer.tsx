@@ -18,7 +18,7 @@ const GeneralInformationContainer = () => {
 	const onSubmit = useActionDispatcher(informationClientToServerActions.updateDetails);
 
 	return (
-		<Page isLoading={isLoading || isUndefined(data)}>
+		<Page label="О республике" isLoading={isLoading || isUndefined(data)}>
 			<GeneralInformation data={data} error={error} onSubmit={onSubmit} />
 		</Page>
 	);
