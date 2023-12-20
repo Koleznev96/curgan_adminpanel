@@ -218,83 +218,80 @@ const AddressWithMapField = ({
 	};
 
 	return (
-		<Grid container direction="column">
-			{/* {label && <Typography className={style.label}>{label}</Typography>} */}
-			<Grid container spacing={3}>
-				<Grid item container xs={12} md={12} spacing={3}>
-					<Grid item xs={12} md={6}>
-						<div ref={anchorEl}>
-							<TextField
-								label={label}
-								onChange={(e) => serachChange(e.target.value)}
-								value={address}
-								onFocus={openMenu}
-								placeholder={placeholder}
-								error={hasError}
-							/>
-						</div>
-					</Grid>
-					<Grid item xs={12} md={6}>
-						<TextField label={'Адрес на английском языке'} disabled value={addressEn} placeholder={placeholder} />
-					</Grid>
-					<Popper
-						popperOptions={popperOptions}
-						placement={'bottom-start'}
-						anchorEl={anchorEl.current}
-						open={!!(isShow && (addressForSearch?.length || isLoadingAddress) && address.length)}
-					>
-						<ClickAwayListener onClickAway={close} mouseEvent="onPointerDown" disableReactTree touchEvent={false}>
-							<Paper
-								sx={{
-									boxShadow: 8,
-									maxHeight: 100,
-									overflowY: !isLoadingAddress ? 'auto' : 'hidden',
-									overflowX: 'hidden',
-									width: popperWidth,
-									wordWrap: 'break-word',
-								}}
-							>
-								{isLoadingAddress ? (
-									<div className={style.load}>
-										<CircularProgress size={28} />
-									</div>
-								) : (
-									_.map(addressForSearch, (item, index) => (
-										<MenuItem onClick={() => onSelect(item)} key={index}>
-											<Typography
-												variant="body1"
-												className={style.meuItem}
-												style={{wordWrap: 'break-word', whiteSpace: 'normal'}}
-											>
-												{item.address}
-											</Typography>
-										</MenuItem>
-									))
-								)}
-							</Paper>
-						</ClickAwayListener>
-					</Popper>
-					{/* {isShowSearch && (
+		<Grid container gap={3}>
+			<Grid item container xs={12} md={12} spacing={3}>
+				<Grid item xs={12} md={6}>
+					<div ref={anchorEl}>
+						<TextField
+							label={label}
+							onChange={(e) => serachChange(e.target.value)}
+							value={address}
+							onFocus={openMenu}
+							placeholder={placeholder}
+							error={hasError}
+						/>
+					</div>
+				</Grid>
+				<Grid item xs={12} md={6}>
+					<TextField label={'Адрес на английском языке'} disabled value={addressEn} placeholder={placeholder} />
+				</Grid>
+				<Popper
+					popperOptions={popperOptions}
+					placement={'bottom-start'}
+					anchorEl={anchorEl.current}
+					open={!!(isShow && (addressForSearch?.length || isLoadingAddress) && address.length)}
+				>
+					<ClickAwayListener onClickAway={close} mouseEvent="onPointerDown" disableReactTree touchEvent={false}>
+						<Paper
+							sx={{
+								boxShadow: 8,
+								maxHeight: 100,
+								overflowY: !isLoadingAddress ? 'auto' : 'hidden',
+								overflowX: 'hidden',
+								width: popperWidth,
+								wordWrap: 'break-word',
+							}}
+						>
+							{isLoadingAddress ? (
+								<div className={style.load}>
+									<CircularProgress size={28} />
+								</div>
+							) : (
+								_.map(addressForSearch, (item, index) => (
+									<MenuItem onClick={() => onSelect(item)} key={index}>
+										<Typography
+											variant="body1"
+											className={style.meuItem}
+											style={{wordWrap: 'break-word', whiteSpace: 'normal'}}
+										>
+											{item.address}
+										</Typography>
+									</MenuItem>
+								))
+							)}
+						</Paper>
+					</ClickAwayListener>
+				</Popper>
+				{/* {isShowSearch && (
 						<Button variant="outlined" className={style.search} onClick={onSearch}>
 							Найти
 						</Button>
 					)} */}
-				</Grid>
-				<Grid item xs={12} md={12}>
-					<div className={style.container}>
-						<Map
-							modules={['Placemark', 'geoObject.addon.balloon']}
-							onLoad={(ympasInstance) => {
-								ymaps.current = ympasInstance;
-								setIsReadyYmaps(true);
-							}}
-							instanceRef={mapRef}
-							onClick={onMapClick}
-							className={style.map}
-							defaultState={{center: [66.24, 129.1], zoom: 10}}
-						></Map>
-					</div>
-				</Grid>
+			</Grid>
+			<Grid item xs={12} md={12}>
+				<div className={style.container}>
+					<Map
+						modules={['Placemark', 'geoObject.addon.balloon']}
+						onLoad={(ympasInstance) => {
+							ymaps.current = ympasInstance;
+							setIsReadyYmaps(true);
+						}}
+						instanceRef={mapRef}
+						onClick={onMapClick}
+						className={style.map}
+						defaultState={{center: [66.24, 129.1], zoom: 10}}
+					></Map>
+				</div>
 			</Grid>
 		</Grid>
 	);
