@@ -108,7 +108,6 @@ const FileFiledWithPreview = ({
 								unit: '%',
 							};
 						}
-
 						setCropData({frame1x1: data1x1, frame3x2: data, frame16x19: data16x19});
 						setNCrop(0);
 						setCrop(data1x1);
@@ -153,10 +152,10 @@ const FileFiledWithPreview = ({
 					const {width, height} = img;
 					if (crop) {
 						const data = {
-							x: (Math.round(crop?.x) * width) / 100,
-							y: (Math.round(crop?.y) * height) / 100,
-							height: (Math.round(crop?.height) * height) / 100,
-							width: (Math.round(crop?.width) * width) / 100,
+							x: Math.round((crop?.x * width) / 100),
+							y: Math.round((crop?.y * height) / 100),
+							height: Math.round((crop?.height * height) / 100),
+							width: Math.round((crop?.width * width) / 100),
 							unit: crop.unit,
 						};
 						setCropData({...cropData, frame1x1: data});
@@ -187,10 +186,10 @@ const FileFiledWithPreview = ({
 					const {width, height} = img;
 					if (crop) {
 						const data = {
-							x: (Math.round(crop?.x) * width) / 100,
-							y: (Math.round(crop?.y) * height) / 100,
-							height: (Math.round(crop?.height) * height) / 100,
-							width: (Math.round(crop?.width) * width) / 100,
+							x: Math.round((crop?.x * width) / 100),
+							y: Math.round((crop?.y * height) / 100),
+							height: Math.round((crop?.height * height) / 100),
+							width: Math.round((crop?.width * width) / 100),
 							unit: crop.unit,
 						};
 						setCropData({...cropData, frame3x2: data});
@@ -221,10 +220,10 @@ const FileFiledWithPreview = ({
 					const {width, height} = img;
 					if (crop) {
 						const data = {
-							x: (Math.round(crop?.x) * width) / 100,
-							y: (Math.round(crop?.y) * height) / 100,
-							height: (Math.round(crop?.height) * height) / 100,
-							width: (Math.round(crop?.width) * width) / 100,
+							x: Math.round((crop?.x * width) / 100),
+							y: Math.round((crop?.y * height) / 100),
+							height: Math.round((crop?.height * height) / 100),
+							width: Math.round((crop?.width * width) / 100),
 							unit: crop.unit,
 						};
 						const gData = {...cropData, frame16x19: data};

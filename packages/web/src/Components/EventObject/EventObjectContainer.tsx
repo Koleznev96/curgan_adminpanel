@@ -19,7 +19,7 @@ const EventObjectContainer = ({id}: TEventObjectContainerProps) => {
 	const onDelete = useActionDispatcher(eventsClientToServerActions.deleteCategory);
 	const onUpdate = useActionDispatcher(eventsClientToServerActions.updateCategory);
 	const onCreate = useActionDispatcher(eventsClientToServerActions.createCategory);
-	const EventsLink = useRouterLinkForMui(Routes.touristObjects);
+	const EventsLink = useRouterLinkForMui(Routes.events);
 
 	const dataVM = isUndefined(id) ? undefined : eventsObjectVM;
 
