@@ -46,7 +46,7 @@ const AudioGuide = ({onSubmit, onDelete, id, audioGuideObjectVM}: TAudioGuidePro
 	const onSave = useCallback(() => {
 		onSubmit({
 			id,
-			polygon,
+			polygon: polygon ? [...polygon, {lat: polygon[0].lat, lon: polygon[0].lon}] : polygon,
 			title,
 			titleEn: titleEn.length ? titleEn : undefined,
 			description,
