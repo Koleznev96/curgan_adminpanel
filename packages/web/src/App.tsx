@@ -1,5 +1,5 @@
 import React, {lazy, Suspense} from 'react';
-import HttpsRedirect from 'react-https-redirect';
+// import HttpsRedirect from 'react-https-redirect';
 import {Provider} from 'react-redux';
 import {CssBaseline, Container} from '@mui/material';
 
@@ -16,20 +16,20 @@ const WithDesktopTheme = lazy(() => import('src/Theme/WithDesktopTheme'));
 const AppRouterContainerDesktop = lazy(() => import('src/AppRouterContainerDesktop'));
 
 const App = () => (
-	<HttpsRedirect disabled={ServiceFactory.env.notProduction()}>
-		<Suspense fallback={<Spinner isGlobal />}>
-			<WithDesktopTheme>
-				<CssBaseline />
-				<Provider store={store}>
-					<Container className="app-container">
-						<GlobalErrorBoundary>
-							<AppRouterContainerDesktop />
-						</GlobalErrorBoundary>
-					</Container>
-				</Provider>
-			</WithDesktopTheme>
-		</Suspense>
-	</HttpsRedirect>
+	// <HttpsRedirect disabled={ServiceFactory.env.notProduction()}>
+	<Suspense fallback={<Spinner isGlobal />}>
+		<WithDesktopTheme>
+			<CssBaseline />
+			<Provider store={store}>
+				<Container className="app-container">
+					<GlobalErrorBoundary>
+						<AppRouterContainerDesktop />
+					</GlobalErrorBoundary>
+				</Container>
+			</Provider>
+		</WithDesktopTheme>
+	</Suspense>
+	// </HttpsRedirect>
 );
 
 export default App;
