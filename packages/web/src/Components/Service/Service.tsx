@@ -227,53 +227,54 @@ const Service = ({onSubmit, onDelete, id, serviceObjectVM}: TServiceProps) => {
 				<Grid item container>
 					<SwitchLanguageField onChange={setLeng} value={leng} />
 				</Grid>
-				<Grid item container spacing={3}>
-					<Grid item container xs={12} md={6} direction="column" gap={1.5}>
-						<TextField
-							label={leng === 'ru' ? 'Название на русском языке*' : 'Название на английском языке'}
-							variant="outlined"
-							tabIndex={1}
-							onChange={(e) => setTitleValue(e.target.value)}
-							value={titleValue}
-							placeholder="Название"
-						/>
-						<TextField
-							label={'Номер телефона'}
-							variant="outlined"
-							type="tel"
-							tabIndex={2}
-							onChange={(e) => setPhone(e.target.value)}
-							value={phone}
-							placeholder="Телефон"
-						/>
-						<TextField
-							label={'Почта'}
-							variant="outlined"
-							tabIndex={3}
-							onChange={(e) => setEmail(e.target.value)}
-							value={email}
-							type="email"
-							placeholder="Почта"
-						/>
-					</Grid>
-					<Grid item container xs={12} md={6} direction="column" gap={1.5}>
-						<SelectCategoryFieldContainer
-							onChange={setCategoryId}
-							value={categoryId}
-							label="Категория услуги*"
-							placeholder="Гостиницы и отели"
-						/>
-						<TextField
-							label={'Сайт'}
-							variant="outlined"
-							tabIndex={2}
-							onChange={(e) => setWebsite(e.target.value)}
-							value={website}
-							placeholder="Сайт"
-						/>
-					</Grid>
-				</Grid>
 			</Grid>
+			{/* <Grid item container spacing={3}> */}
+			<Grid item container xs={12} md={6} direction="column" gap={1.5}>
+				<TextField
+					label={leng === 'ru' ? 'Название на русском языке*' : 'Название на английском языке'}
+					variant="outlined"
+					tabIndex={1}
+					onChange={(e) => setTitleValue(e.target.value)}
+					value={titleValue}
+					placeholder="Название"
+				/>
+				<TextField
+					label={'Номер телефона'}
+					variant="outlined"
+					type="tel"
+					tabIndex={2}
+					onChange={(e) => setPhone(e.target.value)}
+					value={phone}
+					placeholder="Телефон"
+				/>
+				<TextField
+					label={'Почта'}
+					variant="outlined"
+					tabIndex={3}
+					onChange={(e) => setEmail(e.target.value)}
+					value={email}
+					type="email"
+					placeholder="Почта"
+				/>
+			</Grid>
+			<Grid item container xs={12} md={6} direction="column" gap={1.5}>
+				<SelectCategoryFieldContainer
+					onChange={setCategoryId}
+					value={categoryId}
+					label="Категория услуги*"
+					placeholder="Гостиницы и отели"
+				/>
+				<TextField
+					label={'Сайт'}
+					variant="outlined"
+					tabIndex={2}
+					onChange={(e) => setWebsite(e.target.value)}
+					value={website}
+					placeholder="Сайт"
+				/>
+			</Grid>
+			{/* </Grid> */}
+			{/* </Grid> */}
 			<Grid item container xs={12} md={12}>
 				<TextFieldEditor
 					label={leng === 'ru' ? 'Описание на русском языке' : 'Описание на английском языке'}
