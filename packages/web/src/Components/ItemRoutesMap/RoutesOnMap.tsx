@@ -61,12 +61,15 @@ const RoutesOnMap = ({label, value, setValue}: TRoutesOnMapProps) => {
 		placemarkRef.current = createPolyline(coords);
 		mapRef.current?.geoObjects.add(placemarkRef.current);
 
+		mapRef.current?.setCenter(coords[0], 11);
+
 		placemarkRef.current?.editor.stopEditing();
 		placemarkRef.current?.editor.startDrawing();
 
 		placemarkRef.current?.editor.events.add(['drawingstop'], (event: any) => {
 			const coords = event.originalEvent.target.geometry.getCoordinates();
 			const newcoords = _.map(coords[0], (item) => ({lat: item[0], lon: item[1]}));
+			console.log('newcoords-', newcoords);
 			setValue(newcoords);
 			allsteps.current = newcoords;
 			setIsDr(false);
@@ -110,6 +113,14 @@ const RoutesOnMap = ({label, value, setValue}: TRoutesOnMapProps) => {
 			const coords = e.get('coords');
 			filRecord([coords]);
 			setIsDr(true);
+			const newboard = [
+				{
+					lat: coords[0],
+					lon: coords[1],
+				},
+			];
+			setValue(newboard);
+			allsteps.current = newboard;
 		}
 	};
 
@@ -134,7 +145,7 @@ const RoutesOnMap = ({label, value, setValue}: TRoutesOnMapProps) => {
 						}}
 						instanceRef={mapRef}
 						className={style.map}
-						defaultState={{center: [54.47, 32.04], zoom: 10}}
+						defaultState={{center: [66.7613, 124.1238], zoom: 10}}
 						onClick={startDr}
 					></Map>
 				</div>
