@@ -11,6 +11,7 @@ import {placesClientToServerActions} from '@infomat/core/src/Redux/Places/Action
 import {audioGuideClientToServerActions} from '@infomat/core/src/Redux/AudioGuide/Actions/audioGuideClientToServerActions';
 import {eventsClientToServerActions} from '@infomat/core/src/Redux/Events/Actions/eventsClientToServerActions';
 import {museumGuideClientToServerActions} from '@infomat/core/src/Redux/MuseumGuide/Actions/museumGuideClientToServerActions';
+import {userClientToServerActions} from '@infomat/core/src/Redux/User/Actions/userClientToServerActions';
 
 import {EnumRouteSlugs} from 'src/Routes/EnumRouteSlugs';
 
@@ -23,6 +24,10 @@ export const updateStateOnChatNavigationSaga = function* ({
 
 		if (!isLoggedIn) {
 			return;
+		}
+
+		if (path === EnumRouteSlugs.STATISTICS) {
+			yield* put(userClientToServerActions.getStatistics());
 		}
 
 		if (path === EnumRouteSlugs.INFORMATION) {

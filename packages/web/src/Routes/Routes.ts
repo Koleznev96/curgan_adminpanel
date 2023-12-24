@@ -7,6 +7,7 @@ export const Routes = {
 	isModal: (data: string) => false,
 
 	home: '/',
+	statistics: `/${EnumRouteSlugs.STATISTICS}`,
 	information: `/${EnumRouteSlugs.INFORMATION}`,
 	rulesTraveler: `/${EnumRouteSlugs.RULES_TRAVELER}`,
 	rulesUser: `/${EnumRouteSlugs.RULES_USER}`,

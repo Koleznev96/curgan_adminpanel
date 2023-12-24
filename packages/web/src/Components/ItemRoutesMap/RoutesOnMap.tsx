@@ -69,7 +69,6 @@ const RoutesOnMap = ({label, value, setValue}: TRoutesOnMapProps) => {
 		placemarkRef.current?.editor.events.add(['drawingstop'], (event: any) => {
 			const coords = event.originalEvent.target.geometry.getCoordinates();
 			const newcoords = _.map(coords[0], (item) => ({lat: item[0], lon: item[1]}));
-			console.log('newcoords-', newcoords);
 			setValue(newcoords);
 			allsteps.current = newcoords;
 			setIsDr(false);

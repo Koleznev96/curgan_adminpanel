@@ -1,8 +1,8 @@
 import api from './moduleAxios';
-import axios, {AxiosError} from 'axios';
 
 export const authService = {
 	login,
+	getStatistics,
 };
 
 async function login(email: string, password: string) {
@@ -20,4 +20,8 @@ async function login(email: string, password: string) {
 			},
 		},
 	);
+}
+
+async function getStatistics() {
+	return api.get(`/admin/statistics`);
 }

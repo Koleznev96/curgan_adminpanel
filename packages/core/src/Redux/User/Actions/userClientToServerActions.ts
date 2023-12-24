@@ -3,6 +3,7 @@ import {ClientOnlyActions} from '@infomat/core/src/Actions/ActionCreator';
 
 enum EnumClientToServerActions {
 	LOGIN = 'LOGIN',
+	GET_STATISTICS = 'GET_STATISTICS',
 }
 
 class UserClientToServerActions extends ClientOnlyActions<EnumStore.USER> {
@@ -12,6 +13,8 @@ class UserClientToServerActions extends ClientOnlyActions<EnumStore.USER> {
 		EnumClientToServerActions.LOGIN,
 		this.getPrepareAction<{password: string; login: string}>(),
 	);
+
+	getStatistics = this.createAction(EnumClientToServerActions.GET_STATISTICS);
 }
 
 export const userClientToServerActions = new UserClientToServerActions();

@@ -8,6 +8,8 @@ enum EnumClientOnlyActions {
 	UPDATE_NETWORK_STATUS = 'UPDATE_NETWORK_STATUS',
 	LOGOUT = 'LOGOUT',
 	LOGIN_IN = 'LOGIN_IN',
+	SET_STATISTICS = 'SET_STATISTICS',
+	STOP_LOADING = 'STOP_LOADING',
 }
 
 class UserClientOnlyActions extends ClientOnlyActions<EnumStore.USER> {
@@ -28,11 +30,39 @@ class UserClientOnlyActions extends ClientOnlyActions<EnumStore.USER> {
 		this.getPrepareAction<boolean>(),
 	);
 
+	stopLoading = this.createAction(EnumClientOnlyActions.STOP_LOADING);
+
 	logout = this.createAction(EnumClientOnlyActions.LOGOUT);
 
 	resetStore = this.createAction(EnumClientOnlyActions.RESET_STORE);
 
 	login = this.createAction(EnumClientOnlyActions.LOGIN_IN, this.getPrepareAction<string>());
+
+	setStatistics = this.createAction(
+		EnumClientOnlyActions.SET_STATISTICS,
+		this.getPrepareAction<{
+			users: number;
+			publishedPlaces: number;
+			totalPlaces: number;
+			publishedEvents: number;
+			totalEvents: number;
+			publishedServices: number;
+			totalServices: number;
+			categoriesStatistics: [
+				{
+					id: number;
+					title: string;
+					titleEn: string;
+					icon: {
+						id: number;
+						url: string;
+					};
+					publishedServices: number;
+					totalServices: number;
+				},
+			];
+		}>(),
+	);
 }
 
 export const userClientOnlyActions = new UserClientOnlyActions();

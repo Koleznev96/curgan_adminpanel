@@ -14,6 +14,7 @@ const BaseChatPage = lazy(() => import('src/Routes/Pages/Desktop/BaseChatPage'))
 const GeneralInformationPage = lazy(
 	() => import('src/Routes/Pages/Desktop/GeneralInformationPage/GeneralInformationPage'),
 );
+const StatisticsPage = lazy(() => import('src/Routes/Pages/Desktop/StatisticsPage/StatisticsPage'));
 const EditEventPage = lazy(() => import('src/Routes/Pages/Desktop/EditEventPage/EditEventPage'));
 const CategoryObjectPage = lazy(() => import('src/Routes/Pages/Desktop/CategoryObjectPage/CategoryObjectPage'));
 const ServicePage = lazy(() => import('src/Routes/Pages/Desktop/ServicePage/ServicePage'));
@@ -37,6 +38,15 @@ const RouterDesktop = createBrowserRouter(
 				<Route index element={<LoginPage />} />
 			</Route>
 			<Route element={<ProtectedRoute Comp={BaseChatPage} />}>
+				<Route
+					loader={(args) => pageLoader(store, EnumRouteSlugs.STATISTICS, args)(args)}
+					path={EnumRouteSlugs.STATISTICS}
+					element={
+						<Suspense>
+							<StatisticsPage />
+						</Suspense>
+					}
+				/>
 				<Route
 					loader={(args) => pageLoader(store, EnumRouteSlugs.INFORMATION, args)(args)}
 					path={EnumRouteSlugs.INFORMATION}

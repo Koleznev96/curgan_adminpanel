@@ -24,6 +24,7 @@ export const initialUserState = {
 	isLoading: false,
 	errorLogin: undefined,
 	token: getWithExpiry('token', false),
+	statistics: {},
 };
 
 const getDefaultState = (currentState: TUserSlice) => ({
@@ -53,6 +54,16 @@ const userSlice = createSlice<TUserSlice, SliceCaseReducers<TUserSlice>, EnumSto
 			state.isLoading = false;
 			state.errorLogin = undefined;
 		});
+		builder.addCase(userClientToServerActions.getStatistics, (state) => {
+			state.statistics.isLoading = true;
+		});
+		builder.addCase(userClientOnlyActions.stopLoading, (state) => {
+			state.statistics.isLoading = false;
+		});
+		builder.addCase(userClientOnlyActions.setStatistics, (state, action) => {
+			state.statistics.data = action.payload;
+			state.statistics.isLoading = false;
+		});
 		builder.addCase(userClientOnlyActions.upsetDetailes, (state, action) => {
 			state.login = action.payload.login || '';
 			state.isLoading = false;
@@ -70,6 +81,29 @@ const userSlice = createSlice<TUserSlice, SliceCaseReducers<TUserSlice>, EnumSto
 	},
 });
 
+export type TStatistics = {
+	users: number;
+	publishedPlaces: number;
+	totalPlaces: number;
+	publishedEvents: number;
+	totalEvents: number;
+	publishedServices: number;
+	totalServices: number;
+	categoriesStatistics: [
+		{
+			id: number;
+			title: string;
+			titleEn: string;
+			icon: {
+				id: number;
+				url: string;
+			};
+			publishedServices: number;
+			totalServices: number;
+		},
+	];
+};
+
 export type TUserSlice = {
 	login?: string;
 	isNetworkAvailable: boolean;
@@ -77,6 +111,10 @@ export type TUserSlice = {
 	isLoading: boolean;
 	errorLogin?: string;
 	token?: string;
+	statistics: {
+		isLoading?: boolean;
+		data?: TStatistics;
+	};
 };
 
 export default userSlice;

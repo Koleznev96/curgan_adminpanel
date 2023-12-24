@@ -23,6 +23,8 @@ export enum EnumRouteSlugs {
 
 	INFORMATION = 'information',
 
+	STATISTICS = 'statistics',
+
 	RULES_TRAVELER = 'rules-traveler',
 
 	RULES_USER = 'rules-user',

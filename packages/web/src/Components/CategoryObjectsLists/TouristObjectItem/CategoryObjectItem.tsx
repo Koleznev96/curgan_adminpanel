@@ -20,12 +20,7 @@ const CategoryObjectItem = ({id, onDelete, itemVM}: TCategoryObjectItemProps) =>
 
 	return (
 		<Grid container className={style.container} direction="row" spacing={1}>
-			<Grid
-				item
-				xs={1}
-				md={1}
-				// container justifyContent="center"
-			>
+			<Grid item xs={1} md={1}>
 				<div className={style.boxIcon}>
 					<img src={itemVM.icon.url} className={style.iconG} />
 				</div>

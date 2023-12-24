@@ -1,0 +1,30 @@
+@import '@infomat/uikit/src/themeUtils';
+
+.card {
+	display: flex;
+	width: 100%;
+	padding: 16px 20px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
+	border-radius: 6px;
+	border: 1px solid #e2e8f0;
+
+	&.isFull {
+		padding: 16px 0;
+	}
+}
+
+.label {
+	color: themeColor(--mui-palette-slate-700);
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+	margin-bottom: 20px;
+	width: 100%;
+
+	&.isFull {
+		padding: 0 20px;
+	}
+}
