@@ -13,7 +13,7 @@ const StatisticsContainer = () => {
 	const isLoading = useStoreSelector(selectStatisticsIsLoading);
 
 	return (
-		<Page isMin label="Панель инвормации" isLoading={isLoading || isUndefined(data)}>
+		<Page isMin label="Панель информации" isLoading={isLoading || isUndefined(data)}>
 			<Statistics data={data} />
 		</Page>
 	);
