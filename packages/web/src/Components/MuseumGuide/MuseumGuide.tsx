@@ -87,6 +87,7 @@ const MuseumGuide = ({onSubmit, onDelete, id, museumGuideObjectVM}: TMuseumGuide
 			</Grid>
 			<Grid item container xs={12} md={12}>
 				<TextFieldEditor
+					key={leng}
 					label={leng === 'ru' ? 'Описание (русский язык)*' : 'Описание (английский язык)'}
 					setValue={setDescriptionValue}
 					value={descriptionValue}

@@ -36,6 +36,7 @@ const GeneralInformationElement = ({onSubmit, data, type}: TGeneralInformationEl
 			</Grid>
 			<Grid item xs={12} md={12}>
 				<TextFieldEditor
+					key={leng}
 					label={leng === 'ru' ? 'Описание (русский язык)*' : 'Описание (английский язык)'}
 					setValue={setInfoValue}
 					value={infoValue}

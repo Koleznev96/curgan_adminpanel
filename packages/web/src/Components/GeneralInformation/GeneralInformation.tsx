@@ -56,6 +56,7 @@ const GeneralInformation = ({onSubmit, data}: TGeneralInformationProps) => {
 			</Grid>
 			<Grid item xs={12} md={12}>
 				<TextFieldEditor
+					key={leng}
 					label={leng === 'ru' ? 'Описание (русский язык)*' : 'Описание (английский язык)'}
 					setValue={setHistoryValue}
 					value={historyValue}
@@ -63,6 +64,28 @@ const GeneralInformation = ({onSubmit, data}: TGeneralInformationProps) => {
 					height={250}
 					isImage
 				/>
+
+				{/* {leng === 'ru' ? (
+					<TextFieldEditor
+						key={1}
+						label={'Описание (русский язык)*'}
+						setValue={setHistory}
+						value={history}
+						placeholder="Заголовок"
+						height={250}
+						isImage
+					/>
+				) : (
+					<TextFieldEditor
+						key={2}
+						label={'Описание (английский язык)'}
+						setValue={setHistoryEn}
+						value={historyEn}
+						placeholder="Заголовок"
+						height={250}
+						isImage
+					/>
+				)} */}
 			</Grid>
 			<Grid item>
 				<ButtonWithTooltip onClick={onSave} disabled={isDisabledSave} tabIndex={4}>

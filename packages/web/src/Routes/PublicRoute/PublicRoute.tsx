@@ -9,7 +9,7 @@ import Spinner from '@infomat/uikit/src/Spinner/Spinner';
 import {Routes} from 'src/Routes/Routes';
 import PageContainerDesktop from 'src/Routes/PageContainer/PageContainerDesktop';
 
-const PublicRoute = ({startPath = Routes.information}: TPublicRouteProps) => {
+const PublicRoute = ({startPath = Routes.statistics}: TPublicRouteProps) => {
 	const isLoggedIn = useStoreSelector(selectIsLoggedIn);
 	const {state} = useLocation();
 

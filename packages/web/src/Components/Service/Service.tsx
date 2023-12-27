@@ -228,7 +228,6 @@ const Service = ({onSubmit, onDelete, id, serviceObjectVM}: TServiceProps) => {
 					<SwitchLanguageField onChange={setLeng} value={leng} />
 				</Grid>
 			</Grid>
-			{/* <Grid item container spacing={3}> */}
 			<Grid item container xs={12} md={6} direction="column" gap={1.5}>
 				<TextField
 					label={leng === 'ru' ? 'Название на русском языке*' : 'Название на английском языке'}
@@ -273,10 +272,9 @@ const Service = ({onSubmit, onDelete, id, serviceObjectVM}: TServiceProps) => {
 					placeholder="Сайт"
 				/>
 			</Grid>
-			{/* </Grid> */}
-			{/* </Grid> */}
 			<Grid item container xs={12} md={12}>
 				<TextFieldEditor
+					key={leng}
 					label={leng === 'ru' ? 'Описание на русском языке' : 'Описание на английском языке'}
 					setValue={setDescriptionValue}
 					value={descriptionValue}
